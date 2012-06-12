@@ -9,7 +9,7 @@ Properties {
 	$nunitConsole = "$nunit_build_destination\nunit-console.exe"
 }
 
-Task Default -Depends BuildWebApiContrib, PrepareForTest #, RunUnitTests
+Task Default -Depends BuildWebApiContrib #, PrepareForTest, RunUnitTests
 
 Task BuildWebApiContrib -Depends Clean, Build
 
