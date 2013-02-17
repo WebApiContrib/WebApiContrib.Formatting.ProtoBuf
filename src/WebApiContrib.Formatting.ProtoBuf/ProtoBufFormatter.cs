@@ -12,12 +12,15 @@ namespace WebApiContrib.Formatting
     public class ProtoBufFormatter : MediaTypeFormatter
     {
         private static readonly MediaTypeHeaderValue mediaType = new MediaTypeHeaderValue("application/x-protobuf");
-        private static readonly RuntimeTypeModel model = TypeModel.Create();
+        private static Lazy<RuntimeTypeModel> model = new Lazy<RuntimeTypeModel>(CreateTypeModel);
+
+        public static RuntimeTypeModel Model
+        {
+            get { return model.Value; }
+        }
 
         public ProtoBufFormatter()
         {
-            model.UseImplicitZeroDefaults = false;
-
             SupportedMediaTypes.Add(mediaType);
         }
 
@@ -42,7 +45,7 @@ namespace WebApiContrib.Formatting
 
             try
             {
-                object result = model.Deserialize(stream, null, type);
+                object result = Model.Deserialize(stream, null, type);
                 tcs.SetResult(result);
             }
             catch (Exception ex)
@@ -59,7 +62,7 @@ namespace WebApiContrib.Formatting
 
             try
             {
-                model.Serialize(stream, value);
+                Model.Serialize(stream, value);
                 tcs.SetResult(null);
             }
             catch (Exception ex)
@@ -68,6 +71,13 @@ namespace WebApiContrib.Formatting
             }
 
             return tcs.Task;
+        }
+
+        private static RuntimeTypeModel CreateTypeModel()
+        {
+            var typeModel = TypeModel.Create();
+            typeModel.UseImplicitZeroDefaults = false;
+            return typeModel;
         }
 
         private static bool CanReadTypeCore(Type type)
