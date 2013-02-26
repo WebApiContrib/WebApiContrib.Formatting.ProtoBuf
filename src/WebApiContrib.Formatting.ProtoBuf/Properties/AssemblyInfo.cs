@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("WebApiContrib.Formatting.ProtoBuf")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Description")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WebApiContrib.Formatting.ProtoBuf")]
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("0.9.2.0")]
-[assembly: AssemblyFileVersion("0.9.2.0")]
+[assembly: AssemblyVersion("0.9.5")]
+[assembly: AssemblyFileVersion("0.9.5")]
