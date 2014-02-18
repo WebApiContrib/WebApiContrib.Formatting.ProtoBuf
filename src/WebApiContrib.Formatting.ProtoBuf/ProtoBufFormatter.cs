@@ -82,7 +82,7 @@ namespace WebApiContrib.Formatting
 
         private static bool CanReadTypeCore(Type type)
         {
-            return true;
+            return Model.CanSerialize(type);
         }
     }
 }
