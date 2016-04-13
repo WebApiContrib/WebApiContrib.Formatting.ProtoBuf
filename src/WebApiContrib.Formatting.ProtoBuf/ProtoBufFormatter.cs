@@ -1,10 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Threading.Tasks;
+using ProtoBuf;
 using ProtoBuf.Meta;
 
 namespace WebApiContrib.Formatting
@@ -82,7 +85,7 @@ namespace WebApiContrib.Formatting
 
         private static bool CanReadTypeCore(Type type)
         {
-            return true;
+            return type.GetCustomAttributes(typeof(ProtoContractAttribute)).Any();
         }
     }
 }
